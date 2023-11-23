@@ -1,40 +1,47 @@
-// Відправка GET-запиту на сервер для отримання списку завдань (todos)
+document.addEventListener('DOMContentLoaded', function() {
+  // Викликати loadData() після завантаження DOM
+  loadData();
+
+  // Реакція на клік по кнопці або будь-яку іншу подію
+  const addTaskButton = document.getElementById('.app__button--create');
+  addTaskButton.addEventListener('click', function() {
+      // Якщо потрібно викликати saveData() після певної події
+      // Тут можна викликати saveData() або виконати інші дії
+  });
+});
+
 function loadData() {
-  fetch('http://localhost:3345/api/todos') // Використовуйте відповідний URL вашого сервера
-    .then(response => response.json())
-    .then(data => {
-      // Обробка отриманих даних про завдання (todos)
-      console.log('Отримані дані:', data);
-      // Тут ви можете відобразити дані на сторінці або виконати інші дії з отриманими даними
-    })
-    .catch(error => console.error('Помилка отримання даних:', error));
+  fetch('http://localhost:3345/api/todos') 
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log('Отримані дані:', data);
+          // Тут можна виконати дії з отриманими даними, наприклад, відобразити на сторінці
+      })
+      .catch(error => console.error('Помилка отримання даних:', error));
 }
 
-// Відправка POST-запиту на сервер для збереження списку завдань (todos)
 function saveData(data) {
   fetch('http://localhost:3345/api/todos', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data), // Дані для збереження на сервері
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
   })
-    .then(response => response.json())
-    .then(result => {
-      console.log('Результат збереження:', result);
-      // Додаткові дії після успішного збереження на сервері
-    })
-    .catch(error => console.error('Помилка збереження:', error));
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(result => {
+          console.log('Результат збереження:', result);
+          // Тут можна виконати додаткові дії після успішного збереження даних
+      })
+      .catch(error => console.error('Помилка збереження:', error));
 }
-
-// Виклик функцій для отримання та збереження даних на сервері
-loadData(); // Отримати дані від сервера при завантаженні сторінки
-
-// Приклад даних про завдання (todos) для збереження на сервері
-const sampleTodos = [
-  { id: 1, text: 'Complete task 1', completed: false },
-  { id: 2, text: 'Complete task 2', completed: true },
-  { id: 3, text: 'Complete task 3', completed: false },
-];
-
-saveData(sampleTodos); // Зберегти дані на сервері (приклад)
