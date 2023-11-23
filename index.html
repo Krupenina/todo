@@ -1,13 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo</title>
+    <title>ToDoList</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
 </head>
-
 <body>
-</body>
+    <main class="app">
+        <div class="app__container">
+            <header class="app__header">
+                <h1 class="app__title">My ToDoList</h1>
+                <div class="todo__input">
+                    <button id="addTaskButton" class="app__button app__button--create">
+                        <span> Create new todo <span class="material-icons">add_circle</span> </span>
+                    </button>
+                </div>
+            
+                <div class="todo__list">
+                    <!-- Сюди буде динамічно додаватися список завдань -->
+                </div>
+            
+                <div class="todo__filters">
+                    <!-- Елементи для фільтрації завдань (якщо потрібно) -->
+                </div>
 
+
+
+
+
+                <!-- <button class="app__button app__button--create">
+                    <span> Create new todo <span class="material-icons">add_circle</span> </span>
+                </button> -->
+            </header>
+            <!-- <div id="filterButtons">
+                <button id="filterCompleted">Completed</button>
+                <button id="filterIncomplete">Incomplete</button>
+                <button id="filterAll">Show All</button>
+            </div>
+            <div class="todo__list">
+            </div> -->
+        </div>
+    </main>
+    <script src="index.js"></script>
+</body>
 </html>
